@@ -11,5 +11,8 @@ class Khoa extends Model
     public function giaovien(){
         return $this->belongsTo('App\GiaoVien','gv_id','id');
     }
+    public function chuyennganh(){
+        return $this->hasMany('App\ChuyenNganh','khoa_id','id');
+    }
 
 }

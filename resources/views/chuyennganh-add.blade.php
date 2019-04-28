@@ -72,15 +72,17 @@
                                 errors.push(value);
 
                             })
-                          if (errors.length >0){
-                              $('.errors').addClass('show')
-                              $('.errors').text($.each(errors,function (index,value) {
-                                  return value;
-
-                              }))
-                          }else{
+                            if (errors.length >0){
+                                $('.errors').addClass('show')
+                                var html='';
+                                $.each(errors,function (index,value) {
+                                    html+='<li>'+value;
+                                    html+='</li>';
+                                });
+                                $('.errors').html(html);
+                            }else{
                                 $('.errors').addClass('hide')
-                          }
+                            }
 
 
 

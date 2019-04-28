@@ -19,9 +19,9 @@ class CreateSinhvienTable extends Migration
             $table->string('hoten');
             $table->date('ngaysinh');
             $table->string('khoahoc');
-            $table->string('chuyennganh');
+            $table->string('cn_id');
             $table->string('lophoc');
-            $table->string('gvcn');
+
             $table->timestamps();
         });
     }

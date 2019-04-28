@@ -11,4 +11,6 @@ class MonHoc extends Model
     public function chuyennganh(){
         return $this->belongsToMany('App\ChuyenNganh','cn_mh','ma_mh','ma_cn');
     }
+
+
 }

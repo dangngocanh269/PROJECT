@@ -81,16 +81,16 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Sinhvien<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/">List </a>
+                                <a href="/sinhvien">List </a>
                             </li>
                             <li>
-                                <a href="#">Add</a>
+                                <a href="/sinhvien/add">Add</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -111,10 +111,10 @@
                         <a href="#"><i class="fa fa-users fa-fw"></i>Chuyên Ngành<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/chuyennganh">List User</a>
+                                <a href="/chuyennganh">List </a>
                             </li>
                             <li>
-                                <a href="/chuyennganh/add">Add User</a>
+                                <a href="/chuyennganh/add">Add </a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -123,13 +123,17 @@
                         <a href="#"><i class="fa fa-users fa-fw"></i>Môn học<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/monhoc">List User</a>
+                                <a href="/monhoc">List </a>
                             </li>
                             <li>
-                                <a href="/monhoc/add">Add User</a>
+                                <a href="/monhoc/add">Add </a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="/tracuusv"><i class="fa fa-users fa-fw"></i>Tra Cứu sinh viên</a>
+
                     </li>
                 </ul>
             </div>

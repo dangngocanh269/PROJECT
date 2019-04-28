@@ -63,10 +63,6 @@
                     $.ajax({
                         url:  '{{asset("api/khoa/delete")}}' +'/' +$(this).attr('data-id'),
                         type: 'post',
-                        data: new FormData(this),
-                        cache:false,
-                        processData:false,
-                        contentType:false,
                         dataType: 'json',
                         headers: {"X-HTTP-Method-Override": "DELETE"},
                         success:function (data) {

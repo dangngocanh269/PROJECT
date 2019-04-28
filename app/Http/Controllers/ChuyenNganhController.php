@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ChuyenNganh;
 use App\Khoa;
+
 use Illuminate\Http\Request;
 
 class ChuyenNganhController extends Controller
@@ -26,6 +27,7 @@ class ChuyenNganhController extends Controller
     public function create()
     {
         $khoa=Khoa::all();
+
         return view('chuyennganh-add',compact('khoa'));
     }
 

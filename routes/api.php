@@ -34,3 +34,10 @@ Route::group(['prefix'=>'monhoc'],function (){
     Route::put('/update/{id}','MonHocController@update');
     Route::delete('/delete/{id}','MonHocController@destroy');
 });
+Route::group(['prefix'=>'sinhvien'],function (){
+
+    Route::post('/add','SinhVienController@store');
+    Route::put('/update/{id}','SinhVienController@update');
+    Route::delete('/delete/{id}','SinhVienController@destroy');
+});
+

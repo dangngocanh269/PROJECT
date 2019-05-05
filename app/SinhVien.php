@@ -8,8 +8,8 @@ class SinhVien extends Model
 {
     protected $table='sinhvien';
     protected $guarded=[];
-    public function bangdiem(){
-        return $this->belongsToMany('App\MonHoc','bangdiem','id_sv','id_mh')->withPivot('diemtk');
+    public function khoahoc(){
+        return $this->belongsTo('App\KhoaHoc','kh_id','id');
     }
     public function chuyennganh(){
         return $this->belongsTo('App\ChuyenNganh','cn_id','id');

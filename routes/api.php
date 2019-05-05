@@ -34,10 +34,17 @@ Route::group(['prefix'=>'monhoc'],function (){
     Route::put('/update/{id}','MonHocController@update');
     Route::delete('/delete/{id}','MonHocController@destroy');
 });
-Route::group(['prefix'=>'sinhvien'],function (){
-
-    Route::post('/add','SinhVienController@store');
-    Route::put('/update/{id}','SinhVienController@update');
-    Route::delete('/delete/{id}','SinhVienController@destroy');
+Route::group(['prefix'=>'khoahoc'],function (){
+    Route::get('/','KhoaHocController@index');
+    Route::post('/add','KhoaHocController@store');
+    Route::put('/update/{id}','KhoaHocController@update');
+    Route::delete('/delete/{id}','KhoaHocController@destroy');
+});
+Route::group(['prefix'=>'cthoc'],function (){
+    Route::get('/','CTHocController@index');
+    Route::get('/monhoc','CTHocController@monhoc');
+    Route::post('/add','CTHocController@store');
+    Route::put('/update/{id}','CTHocController@update');
+    Route::delete('/delete/{id}','CTHocController@destroy');
 });
 

@@ -14,14 +14,6 @@
                         <input class="form-control" name="tenkhoa" id="tenkhoa" value="{{$khoa->tenkhoa}}"  placeholder="Nhập tên khoa" />
                         <small id="errortenkhoa" style="color: red;"></small>
                     </div>
-                    <div class="form-group">
-                        <label>Trưởng khoa</label>
-                        <select name="ma_gv"  class="form-control">
-                            @foreach($giaovien as $gv)
-                                <option value="{{$gv->id}}" {{$gv->id==$khoa->gv_id ? 'selected': ''}}>{{$gv->hoten}}</option>
-                            @endforeach
-                        </select>
-                    </div>
                     <button type="submit" class="btn btn-success" id="idkhoa" data-id="{{$khoa->id}}">Update</button>
                     <button type="reset" class="btn btn-default">Reset</button>
                     <a href="{{asset('/khoa')}} " class="btn btn-default">Quay lại</a>

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\ChuyenNganh;
+use App\Http\Resources\ChuyenNganh as CNResource;
 use App\Khoa;
-
 use Illuminate\Http\Request;
 
 class ChuyenNganhController extends Controller
@@ -16,7 +16,7 @@ class ChuyenNganhController extends Controller
      */
     public function index()
     {
-        return \App\Http\Resources\ChuyenNganh::collection(ChuyenNganh::all());
+        return CNResource::collection(ChuyenNganh::all());
     }
 
     /**
@@ -46,7 +46,6 @@ class ChuyenNganhController extends Controller
         $chuyennganh=new ChuyenNganh();
         $chuyennganh->macn=$request->macn;
         $chuyennganh->tencn=$request->tencn;
-        $chuyennganh->tencn_slug=str_slug($request->tencn);
         $chuyennganh->khoa_id=$request->khoa_id;
         $chuyennganh->save();
         return response([
@@ -62,7 +61,8 @@ class ChuyenNganhController extends Controller
      */
     public function show($id)
     {
-        //
+        $cn=ChuyenNganh::find($id);
+        return view('dkmonhoc',compact('cn'));
     }
 
     /**
@@ -94,7 +94,6 @@ class ChuyenNganhController extends Controller
         $chuyennganh=ChuyenNganh::find($id);
         $chuyennganh->macn=$request->macn;
         $chuyennganh->tencn=$request->tencn;
-        $chuyennganh->tencn_slug=str_slug($request->tencn);
         $chuyennganh->khoa_id=$request->khoa_id;
         $chuyennganh->save();
         return response([
@@ -118,4 +117,5 @@ class ChuyenNganhController extends Controller
     public function getview(){
         return view('chuyennganh');
     }
+
 }

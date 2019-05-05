@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <base href="{{asset('')}}">
     <title></title>
 
@@ -41,7 +42,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Quản lý xét tốt nghiệp</a>
+            <a class="navbar-brand" href="">
+                {{--{{Auth::user()->role!='SV'? 'Quản lý xét tốt nghiệp':'Đăng ký tôt nghiệp'}}--}}
+                asdasd
+            </a>
         </div>
         <!-- /.navbar-header -->
 
@@ -49,7 +53,7 @@
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-user fa-fw"></i>asdasdasd <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -83,58 +87,121 @@
                     <li>
                         <a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Sinhvien<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/sinhvien">List </a>
+                                </li>
+                                <li>
+                                    <a href="/sinhvien/add">Add</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-cube fa-fw"></i> Khoa<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/khoa">List </a>
+                                </li>
+                                <li>
+                                    <a href="/khoa/add">Add </a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Sinhvien<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-cube fa-fw"></i> Khóa Học<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/sinhvien">List </a>
+                                <a href="/khoahoc">List </a>
                             </li>
                             <li>
-                                <a href="/sinhvien/add">Add</a>
+                                <a href="/khoahoc/add">Add </a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-cube fa-fw"></i> Khoa<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-cube fa-fw"></i>Quản lý Ctrình học<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/khoa">List </a>
+                                <a href="/cthoc">List </a>
                             </li>
                             <li>
-                                <a href="/khoa/add">Add </a>
+                                <a href="/cthoc/add">Add </a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-users fa-fw"></i>Chuyên Ngành<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/chuyennganh">List </a>
-                            </li>
-                            <li>
-                                <a href="/chuyennganh/add">Add </a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-users fa-fw"></i>Môn học<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/monhoc">List </a>
-                            </li>
-                            <li>
-                                <a href="/monhoc/add">Add </a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="/tracuusv"><i class="fa fa-users fa-fw"></i>Tra Cứu sinh viên</a>
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i>Chuyên Ngành<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/chuyennganh">List </a>
+                                </li>
+                                <li>
+                                    <a href="/chuyennganh/add">Add </a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i>Môn học<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/monhoc">List </a>
+                                </li>
+                                <li>
+                                    <a href="/monhoc/add">Add </a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="/tracuusv"><i class="fa fa-users fa-fw"></i>Tra Cứu sinh viên <i class="fa fa-angle-right " style="float: right"></i> </a>
 
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i>User<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/user">List </a>
+                                </li>
+                                <li>
+                                    <a href="/user/add">Add </a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i>Đợt tốt nghiệp<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/dottotnghiep">List </a>
+                                </li>
+                                <li>
+                                    <a href="/dottotnghiep/add">Add </a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                        <li>
+                            <a href="/dangkytn"><i class="fa fa-users fa-fw"></i>Đăng ký xét tốt nghiệp<i class="fa fa-angle-right " style="float: right"></i> </a>
+                        </li>
+                        <li>
+                            <a href="/thongbao"><i class="fa fa-users fa-fw"></i>Thông báo<i class="fa fa-angle-right " style="float: right"></i> </a>
+                        </li>
+                        <li>
+                            <a href="/bangdiem"><i class="fa fa-users fa-fw"></i>Bảng điểm<i class="fa fa-angle-right " style="float: right"></i> </a>
+                        </li>
+
+                    <li>
+                        <a href="/logout"><i class="fa fa-power-off fa-fw"></i>Logout</a>
                     </li>
+
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

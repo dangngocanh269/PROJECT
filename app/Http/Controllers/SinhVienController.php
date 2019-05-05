@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Khoa;
-use App\MonHoc;
-use Illuminate\Http\Request;
+use App\ChuyenNganh;
+use App\KhoaHoc;
 use App\SinhVien;
+use Illuminate\Http\Request;
+use Excel;
+use DB;
 
 class SinhVienController extends Controller
 {
@@ -19,6 +21,26 @@ class SinhVienController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function import(Request $request){
+        $this->validate($request,[
+            'file'=>'required|mimes:xls,xlsx'
+        ]);
+        $path=$request->file('file')->getRealPath();
+
+        $data=Excel::load($path)->get();
+        foreach ($data->toArray() as $value){
+            $sinhvien= new SinhVien();
+            $sinhvien->masv=$value['ma_sv'];
+            $sinhvien->hoten=$value['ho_ten'];
+            $sinhvien->ngaysinh=date('Y-m-d',strtotime($value['ngay_sinh']));
+            $sinhvien->lophoc=$value['lop_hoc'];
+            $sinhvien->kh_id= (KhoaHoc::select('id')->where('tenkhoa','=',$value['khoa_hoc'])->first())->id ;
+            $sinhvien->cn_id= (ChuyenNganh::select('id')->where('tencn','=',$value['chuyen_nganh'])->first())->id;
+            $sinhvien->save();
+        }
+        return back();
+
+    }
     public function create()
     {
         $khoa=Khoa::all();
@@ -38,9 +60,9 @@ class SinhVienController extends Controller
         $this->validate($request,[
             'masv'=>'required|min:4|max:10|unique:sinhvien,masv',
             'hoten'=>'required|min:5|max:100',
-            'khoahoc'=>'required|min:5|max:100',
+            'khoahoc'=>'required|max:100',
             'ngaysinh'=>'required',
-            'lophoc'=>'required|min:5|max:100'
+            'lophoc'=>'required|max:100'
 
         ]);
         $sinhvien=new SinhVien();
@@ -129,27 +151,33 @@ class SinhVienController extends Controller
     public function getview(){
         return view('monhoc');
     }
-    public function tracuusv(Request $request){
-        $sinhvien=SinhVien::where($request->column,'=',$request->tukhoa)->first();
-        if (empty($sinhvien)){
-            return 'Không tìm thấy sinh viên có mã này';
-        }else{
-            if ($sinhvien->bangdiem->isEmpty()){
-                $b=[];
-                $c=[];
-                return view('data-searchsv',compact('sinhvien','b','c'));
-            }else{
-                $a=$sinhvien->bangdiem->chunk(round(count($sinhvien->bangdiem)/2));
-                $b=$a[0];
-                $c=$a[1];
-                $tongtinchi=$sinhvien->bangdiem->where('pivot.diemtk','>=','5')->where('mamon','<>','GDQP')->where('mamon','<>','GDTC')->sum('sotinchi');
-                $diemtb=$sinhvien->bangdiem->where('mamon','<>','GDQP')->where('mamon','<>','GDTC')->sum('pivot.diemtk')/count($sinhvien->bangdiem);
-
-                return view('data-searchsv',compact('sinhvien','b','c','tongtinchi','diemtb'));
-            }
-
-        }
-
-
-    }
+//    public function tracuusv(Request $request){
+//        $sinhvien=SinhVien::where($request->column,'=',$request->tukhoa)->first();
+//        if (empty($sinhvien)){
+//            return 'Không tìm thấy sinh viên có mã này';
+//        }else{
+//            if ($sinhvien->bangdiem->isEmpty()){
+//                $b=[];
+//                $c=[];
+//                return view('data-searchsv',compact('sinhvien','b','c'));
+//            }else{
+//                $a=$sinhvien->bangdiem->chunk(round(count($sinhvien->bangdiem)/2));
+//                $b=$a[0];
+//                $c=$a[1];
+//                $tongtinchi=$sinhvien->bangdiem->where('pivot.diemtk','>=','5')->where('mamon','<>','GDQP')->where('mamon','<>','GDTC')->sum('sotinchi');
+//                $diemtb=$sinhvien->bangdiem->where('mamon','<>','GDQP')->where('mamon','<>','GDTC')->sum('pivot.diemtk')/count($sinhvien->bangdiem);
+//
+//                return view('data-searchsv',compact('sinhvien','b','c','tongtinchi','diemtb'));
+//            }
+//
+//        }
+//
+//
+//    }
+//    public function getbangdiem(){
+//        $sinhvien=SinhVien::where('masv','=',Auth::user()->username)->first();
+//        $tongtinchi=$sinhvien->bangdiem->where('pivot.diemtk','>=','5')->where('mamon','<>','GDQP')->where('mamon','<>','GDTC')->sum('sotinchi');
+//        $diemtb=$sinhvien->bangdiem->where('mamon','<>','GDQP')->where('mamon','<>','GDTC')->sum('pivot.diemtk')/count($sinhvien->bangdiem);
+//        return view('bangdiem',compact('sinhvien','tongtinchi','diemtb'));
+//    }
 }

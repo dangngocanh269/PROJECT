@@ -54,7 +54,7 @@
                 columns: [
                     { data: 'mamon' },
                     { data: 'tenmon' },
-                    { data: 'sotinchi' },
+                    { data: 'tinchi' },
                     { data: 'heso' },
                     { data: 'action',"render":function (data,type,row) {
                             return '<a class="btn btn-primary" href="{{asset('/monhoc/edit')}}/'+row.id+'"><i class="fa fa-pencil fa-fw"></i></a>&ensp;<button class="btn btn-danger delete" data-id="'+row.id+'"><i class="fa fa-trash-o  fa-fw"></i></button>';

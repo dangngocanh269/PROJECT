@@ -22,7 +22,6 @@
                 <tr align="center">
                     <th>ID</th>
                     <th>Tên Khoa</th>
-                    <th>Trưởng Khoa</th>
                     <th>Hành động</th>
                 </tr>
                 </thead>
@@ -52,7 +51,6 @@
                 columns: [
                     { data: 'id' },
                     { data: 'tenkhoa' },
-                    { data: 'truongkhoa' },
                     { data: 'action',"render":function (data,type,row) {
                             return '<a class="btn btn-primary" href="{{asset('/khoa/edit')}}/'+row.id+'"><i class="fa fa-pencil fa-fw"></i></a>&ensp;<button class="btn btn-danger delete" data-id="'+row.id+'"><i class="fa fa-trash-o  fa-fw"></i></button>';
                         } }

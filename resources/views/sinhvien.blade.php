@@ -1,20 +1,43 @@
 @extends('master')
 @section('content')
-<div class="container-fluid">
-    <style>
-        th.dt-center, td.dt-center { text-align: center; }
-    </style>
+    <div class="container-fluid">
+        <style>
+            th.dt-center, td.dt-center { text-align: center; }
+        </style>
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Sinh Viên
                     <small>List</small>
                 </h1>
             </div>
-            <div class="row " style="margin-bottom: 10px;">
-                <div class="col-md-10"></div>
-                <div class="col-md-2">
-                    <a href="{{asset('sinhvien/add')}}" class="btn btn-success">Thêm mới</a>
+            @if(count($errors)>0)
+                <div class="alert alert-danger">
+                    @foreach($errors->all() as $error)
+                        {{$error}}
+                        @endforeach
                 </div>
+                @endif
+            <div class="row " style="margin-bottom: 10px;">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <form action="{{asset('sinhvien/import')}}" method="POST" id="importsv" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <input type="file" name="file" >
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-success">Import</button>
+                            </div>
+
+
+                        </div>
+
+                    {{csrf_field()}}
+                    </form>
+                </div>
+
             </div>
             <!-- /.col-lg-12 -->
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -31,16 +54,16 @@
                 </thead>
                 <tbody>
                 @foreach($sinhvien as $sv)
-                <tr class="odd gradeX" align="center">
-                    <td>{{$sv->masv}}</td>
-                    <td>{{$sv->hoten}}</td>
-                    <td>{{date('d-m-Y',strtotime($sv->ngaysinh))}}</td>
-                    <td>{{$sv->khoahoc}}</td>
-                    <td>{{$sv->chuyennganh->tencn}}</td>
-                    <td>{{$sv->lophoc}}</td>
-                    <td><button class="btn btn-danger delete" data-id="{{$sv->id}}"><i class="fa fa-trash"></i></button></td>
-                </tr>
-                    @endforeach
+                    <tr class="odd gradeX" align="center">
+                        <td>{{$sv->masv}}</td>
+                        <td>{{$sv->hoten}}</td>
+                        <td>{{date('d-m-Y',strtotime($sv->ngaysinh))}}</td>
+                        <td>{{$sv->khoahoc->tenkhoa}}</td>
+                        <td>{{$sv->chuyennganh->tencn}}</td>
+                        <td>{{$sv->lophoc}}</td>
+                        <td><button class="btn btn-danger delete" data-id="{{$sv->id}}"><i class="fa fa-trash"></i></button></td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

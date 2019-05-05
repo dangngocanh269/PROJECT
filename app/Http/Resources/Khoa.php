@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\Resource;
 
-class Khoa extends JsonResource
+class Khoa extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -17,8 +17,6 @@ class Khoa extends JsonResource
         return [
             'id'=>$this->id,
             'tenkhoa'=>$this->tenkhoa,
-            'tenkhoa_slug'=>$this->tenkhoa_slug,
-            'truongkhoa'=>$this->giaovien->hoten,
         ];
     }
 }

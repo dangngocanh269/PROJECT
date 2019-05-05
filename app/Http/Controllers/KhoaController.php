@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\GiaoVien;
 use Illuminate\Http\Request;
 use App\Khoa;
 use App\Http\Resources\Khoa as KhoaResource;
@@ -26,9 +25,7 @@ class KhoaController extends Controller
      */
     public function create()
     {
-        $giaovien=GiaoVien::all();
-//        dd($giaovien);
-        return view('khoa-add',compact('giaovien'));
+        return view('khoa-add');
     }
 
     /**
@@ -44,8 +41,6 @@ class KhoaController extends Controller
         ]);
         $khoa=new Khoa();
         $khoa->tenkhoa=$request->tenkhoa;
-        $khoa->tenkhoa_slug=str_slug($request->tenkhoa);
-        $khoa->gv_id=$request->ma_gv;
         $khoa->save();
         return response([
             'success'=>'Bạn thêm mới thành công'
@@ -71,9 +66,9 @@ class KhoaController extends Controller
      */
     public function edit($id)
     {
-        $giaovien=GiaoVien::all();
+
         $khoa=Khoa::find($id);
-        return view('khoa-edit',compact('khoa','giaovien'));
+        return view('khoa-edit',compact('khoa'));
     }
 
     /**
@@ -90,8 +85,7 @@ class KhoaController extends Controller
         ]);
         $khoa=Khoa::find($id);
         $khoa->tenkhoa=$request->tenkhoa;
-        $khoa->tenkhoa_slug=str_slug($request->tenkhoa);
-        $khoa->gv_id=$request->ma_gv;
+
         $khoa->save();
         return response([
             'success'=>'Bạn update thành công'

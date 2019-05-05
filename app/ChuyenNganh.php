@@ -11,7 +11,4 @@ class ChuyenNganh extends Model
     public function khoa(){
         return $this->belongsTo('App\Khoa','khoa_id','id');
     }
-    public function monhoc(){
-        return $this->belongsToMany('App\MonHoc','cn_mh','ma_cn','ma_mh');
-    }
 }

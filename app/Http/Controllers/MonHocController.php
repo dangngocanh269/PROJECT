@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
-use App\ChuyenNganh;
-use App\Khoa;
 use App\MonHoc;
 use Illuminate\Http\Request;
 
@@ -17,7 +14,9 @@ class MonHocController extends Controller
      */
     public function index()
     {
-        return \App\Http\Resources\MonHoc::collection(MonHoc::all());
+        return response([
+            'data'=>MonHoc::all()
+        ]);
     }
 
     /**
@@ -27,8 +26,8 @@ class MonHocController extends Controller
      */
     public function create()
     {
-        $chuyennganh=ChuyenNganh::all();
-        return view('monhoc-add',compact('chuyennganh'));
+
+        return view('monhoc-add');
     }
 
     /**

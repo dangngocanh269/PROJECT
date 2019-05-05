@@ -41,13 +41,13 @@ class SinhVienController extends Controller
         return back();
 
     }
-    public function create()
-    {
-        $khoa=Khoa::all();
-        $chuyennganh=$khoa->first();
-        $monhoc=MonHoc::where('cn_id','=',$chuyennganh->id);
-        return view('sinhvien-add',compact('khoa','chuyennganh','monhoc'));
-    }
+//    public function create()
+//    {
+//        $khoa=Khoa::all();
+//        $chuyennganh=$khoa->first();
+//        $monhoc=MonHoc::where('cn_id','=',$chuyennganh->id);
+//        return view('sinhvien-add',compact('khoa','chuyennganh','monhoc'));
+//    }
 
     /**
      * Store a newly created resource in storage.
@@ -55,51 +55,51 @@ class SinhVienController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $this->validate($request,[
-            'masv'=>'required|min:4|max:10|unique:sinhvien,masv',
-            'hoten'=>'required|min:5|max:100',
-            'khoahoc'=>'required|max:100',
-            'ngaysinh'=>'required',
-            'lophoc'=>'required|max:100'
-
-        ]);
-        $sinhvien=new SinhVien();
-        $sinhvien->masv=$request->masv;
-        $sinhvien->hoten=$request->hoten;
-        $sinhvien->ngaysinh=$request->ngaysinh;
-        $sinhvien->khoahoc=$request->khoahoc;
-        $sinhvien->cn_id=$request->cn_id;
-        $sinhvien->lophoc=$request->lophoc;
-        $sinhvien->save();
-        if ($request->check=="on"){
-            if ($request->mh_id){
-                foreach ($request->mh_id as $idmh){
-                    $so=rand(50,100)/10;
-                    $monhoc=MonHoc::find($idmh);
-                    $sinhvien->bangdiem()->attach($monhoc,array('diemtk'=>$so));
-                }
-            }
-        }else{
-            if ($request->mh_id){
-                foreach ($request->mh_id as $idmh){
-                    $so=rand(30,100)/10;
-                    if ($so >=4.6 && $so<5){
-                        $so= 5;
-                    }
-                    $monhoc=MonHoc::find($idmh);
-                    $sinhvien->bangdiem()->attach($monhoc,array('diemtk'=>$so));
-                }
-            }
-        }
-
-
-        return response([
-            'success'=>'Bạn thêm mới thành công'
-        ]);
-
-    }
+//    public function store(Request $request)
+//    {
+//        $this->validate($request,[
+//            'masv'=>'required|min:4|max:10|unique:sinhvien,masv',
+//            'hoten'=>'required|min:5|max:100',
+//            'khoahoc'=>'required|max:100',
+//            'ngaysinh'=>'required',
+//            'lophoc'=>'required|max:100'
+//
+//        ]);
+//        $sinhvien=new SinhVien();
+//        $sinhvien->masv=$request->masv;
+//        $sinhvien->hoten=$request->hoten;
+//        $sinhvien->ngaysinh=$request->ngaysinh;
+//        $sinhvien->khoahoc=$request->khoahoc;
+//        $sinhvien->cn_id=$request->cn_id;
+//        $sinhvien->lophoc=$request->lophoc;
+//        $sinhvien->save();
+//        if ($request->check=="on"){
+//            if ($request->mh_id){
+//                foreach ($request->mh_id as $idmh){
+//                    $so=rand(50,100)/10;
+//                    $monhoc=MonHoc::find($idmh);
+//                    $sinhvien->bangdiem()->attach($monhoc,array('diemtk'=>$so));
+//                }
+//            }
+//        }else{
+//            if ($request->mh_id){
+//                foreach ($request->mh_id as $idmh){
+//                    $so=rand(30,100)/10;
+//                    if ($so >=4.6 && $so<5){
+//                        $so= 5;
+//                    }
+//                    $monhoc=MonHoc::find($idmh);
+//                    $sinhvien->bangdiem()->attach($monhoc,array('diemtk'=>$so));
+//                }
+//            }
+//        }
+//
+//
+//        return response([
+//            'success'=>'Bạn thêm mới thành công'
+//        ]);
+//
+//    }
 
     /**
      * Display the specified resource.
@@ -148,9 +148,9 @@ class SinhVienController extends Controller
             'success'=>'Bạn đã delete thành công'
         ]);
     }
-    public function getview(){
-        return view('monhoc');
-    }
+//    public function getview(){
+//        return view('monhoc');
+//    }
 //    public function tracuusv(Request $request){
 //        $sinhvien=SinhVien::where($request->column,'=',$request->tukhoa)->first();
 //        if (empty($sinhvien)){

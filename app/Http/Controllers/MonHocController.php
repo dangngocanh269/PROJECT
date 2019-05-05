@@ -41,24 +41,17 @@ class MonHocController extends Controller
         $this->validate($request,[
             'mamon'=>'required|min:2|max:10|unique:monhoc,mamon',
             'tenmon'=>'required|min:2|max:100|unique:monhoc,tenmon',
-            'sotinchi'=>'required|numeric',
+            'tinchi'=>'required|numeric',
             'heso'=>'required|numeric',
 
         ]);
         $monhoc=new MonHoc();
         $monhoc->mamon=$request->mamon;
         $monhoc->tenmon=$request->tenmon;
-        $monhoc->tenmon_slug=str_slug($request->tenmon);
-        $monhoc->sotinchi=$request->sotinchi;
+        $monhoc->tinchi=$request->tinchi;
         $monhoc->heso=$request->heso;
         $monhoc->save();
-        if (isset($request->ma_cn)){
 
-            foreach ($request->ma_cn as $cn){
-                $cn=ChuyenNganh::find($cn);
-                $monhoc->chuyennganh()->attach($cn);
-            }
-        }
         return response([
             'success'=>'Bạn thêm mới thành công'
         ]);
@@ -86,8 +79,8 @@ class MonHocController extends Controller
     {
         $monhoc=MonHoc::find($id);
 
-        $chuyennganh=ChuyenNganh::all();
-        return view('monhoc-edit',compact('monhoc','chuyennganh'));
+
+        return view('monhoc-edit',compact('monhoc'));
     }
 
     /**
@@ -102,23 +95,15 @@ class MonHocController extends Controller
         $this->validate($request,[
             'mamon'=>'required|min:2|max:10|unique:monhoc,mamon,'.$id.',id',
             'tenmon'=>'required|min:2|max:100|unique:monhoc,tenmon,'.$id.',id',
-            'sotinchi'=>'required|numeric',
+            'tinchi'=>'required|numeric',
             'heso'=>'required|numeric',
         ]);
         $monhoc=MonHoc::find($id);
         $monhoc->mamon=$request->mamon;
         $monhoc->tenmon=$request->tenmon;
-        $monhoc->tenmon_slug=str_slug($request->tenmon);
-        $monhoc->sotinchi=$request->sotinchi;
+        $monhoc->tinchi=$request->tinchi;
         $monhoc->heso=$request->heso;
         $monhoc->save();
-        if (isset($request->ma_cn)){
-            $monhoc->chuyennganh()->detach();
-            foreach ($request->ma_cn as $cn){
-                $cn=ChuyenNganh::find($cn);
-                $monhoc->chuyennganh()->attach($cn);
-            }
-        }
         return response([
             'success'=>'Bạn đã update thành công'
         ]);
@@ -132,7 +117,7 @@ class MonHocController extends Controller
      */
     public function destroy($id)
     {
-        monhoc::destroy($id);
+        MonHoc::destroy($id);
         return response([
             'success'=>'Bạn đã delete thành công'
         ]);

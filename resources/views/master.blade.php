@@ -111,6 +111,28 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i>Chuyên Ngành<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/chuyennganh">List </a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i>Môn học<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/monhoc">List </a>
+                                </li>
+                                <li>
+                                    <a href="/monhoc/add">Add </a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     <li>
                         <a href="#"><i class="fa fa-cube fa-fw"></i> Khóa Học<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -135,30 +157,6 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-                        <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i>Chuyên Ngành<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/chuyennganh">List </a>
-                                </li>
-                                <li>
-                                    <a href="/chuyennganh/add">Add </a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i>Môn học<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/monhoc">List </a>
-                                </li>
-                                <li>
-                                    <a href="/monhoc/add">Add </a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
                         <li>
                             <a href="/tracuusv"><i class="fa fa-users fa-fw"></i>Tra Cứu sinh viên <i class="fa fa-angle-right " style="float: right"></i> </a>
 
